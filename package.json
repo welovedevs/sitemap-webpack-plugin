@@ -1,0 +1,28 @@
+{
+  "name": "sitemap-webpack-plugin",
+  "version": "0.1.0",
+  "description": "Webpack plugin to generate a sitemap.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schneidmaster/sitemap-webpack-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "sitemap",
+    "static"
+  ],
+  "author": "Zach Schneider <zach@schneid.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/schneidmaster/sitemap-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/schneidmaster/sitemap-webpack-plugin#readme",
+  "devDependencies": {
+    "webpack": "^1.12.14"
+  }
+}
