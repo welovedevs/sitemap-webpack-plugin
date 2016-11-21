@@ -2,7 +2,7 @@ function SitemapWebpackPlugin(base, paths, fileName) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
   // Set options
-  this.lastMod = options.lastMod || true;
+  this.lastMod = options.lastMod || false;
   this.changeFreq = options.changeFreq || null;
   this.priority = options.priority || null;
 
