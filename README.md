@@ -16,6 +16,20 @@ Add to your webpack config -- see below for an example. The plugin signature is:
 * `paths` is the array of locations on your site -- this can be the same one you pass to `static-site-generator-webpack-plugin`
 * `filename` is the name of the output file -- the default is `sitemap.xml`
 
+### Options
+
+* `lastMod` [boolean] default `false`
+* `priority` [number] defualt `null`
+* `changeFreq` [string] default `null`, list of applicable values based on [sitemaps.org]('http://www.sitemaps.org/protocol.html')
+
+      always
+      hourly
+      daily
+      weekly
+      monthly
+      yearly
+      never
+
 ### webpack.config.js
 
 ```js
@@ -34,8 +48,23 @@ module.exports = {
     new SitemapPlugin('https://mysite.com', paths, 'map.xml')
   ]
 
+  /* with options */
+
+  plugins: [
+    new SitemapPlugin(
+      'https://mysite.com',paths, 'map.xml',
+      {
+        lastMod: true,
+        changeFreq: 'monthly',
+        priority: 0.4,
+      }
+    )
+  ]
+
 };
 ```
+
+
 
 ## Contributing
 
