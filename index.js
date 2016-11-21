@@ -1,7 +1,22 @@
 function SitemapWebpackPlugin(base, paths, fileName) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+
+  // Set options
+  this.lastMod = options.lastMod || true;
+  this.changeFreq = options.changeFreq || null;
+  this.priority = options.priority || null;
+
   this.base = base;
   this.paths = paths;
   this.fileName = fileName || 'sitemap.xml';
+}
+
+function GenerateDate() {
+  var date = new Date().toLocaleDateString().split("/");
+  var year = date.splice(-1)[0];
+  date.splice(0, 0, year);
+  var formattedDate = date.join("-");
+  return formattedDate;
 }
 
 SitemapWebpackPlugin.prototype.apply = function(compiler) {
@@ -15,6 +30,9 @@ SitemapWebpackPlugin.prototype.apply = function(compiler) {
 
     out += '<url>';
     out += '<loc>' + self.base + path + '</loc>';
+    self.lastMod ? out += '<lastmod>' + GenerateDate() + '</lastmod>' : null;
+    self.changeFreq ? out += '<changefreq>' + self.changeFreq + '</changefreq>' : null;
+    self.priority ? out += '<priority>' + self.priority + '</priority>' : null;
     out += '</url>';
   }
   out += '</urlset>';
