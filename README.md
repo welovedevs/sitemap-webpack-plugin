@@ -19,16 +19,18 @@ Add to your webpack config -- see below for an example. The plugin signature is:
 ### Options
 
 * `lastMod` [boolean] default `false`
-* `priority` [number] defualt `null`
-* `changeFreq` [string] default `null`, list of applicable values based on [sitemaps.org]('http://www.sitemaps.org/protocol.html')
+* `priority` [number] default `null`
+* `changeFreq` [string] default `null`, list of applicable values based on [sitemaps.org](http://www.sitemaps.org/protocol.html)
 
-      always
-      hourly
-      daily
-      weekly
-      monthly
-      yearly
-      never
+```
+always
+hourly
+daily
+weekly
+monthly
+yearly
+never
+```
 
 ### webpack.config.js
 
