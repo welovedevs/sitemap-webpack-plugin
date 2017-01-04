@@ -1,0 +1,1 @@
+module.exports = 'Error: Provided base URL is not a string';

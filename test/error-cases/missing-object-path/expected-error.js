@@ -1,0 +1,1 @@
+module.exports = 'Error: Path is not a string: [object Object]';

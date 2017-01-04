@@ -1,11 +1,15 @@
 {
   "name": "sitemap-webpack-plugin",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Webpack plugin to generate a sitemap.",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha test -- --timeout 20000",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "lint": "jshint ./**/*.js"
+  },
+  "jshintConfig": {
+    "expr": true
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,7 @@
     "coveralls": "^2.11.15",
     "glob": "^7.1.1",
     "istanbul": "^0.4.5",
+    "jshint": "^2.9.4",
     "mocha": "^3.2.0",
     "rimraf": "^2.5.4",
     "timecop": "git+https://github.com/jamesarosen/Timecop.js.git",

@@ -8,10 +8,11 @@ module.exports = {
   },
 
   plugins: [
-    new SitemapPlugin('https://mysite.com', ['/', '/about'], 'sitemap.xml', {
+    new SitemapPlugin('https://mysite.com', ['/', '/about'], {
+      fileName: 'sitemap.xml',
       lastMod: true,
       changeFreq: 'monthly',
-      priority: 0.4,
+      priority: '0.4'
     })
   ]
 };

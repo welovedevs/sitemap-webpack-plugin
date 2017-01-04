@@ -5,4 +5,4 @@ module.exports = function() {
   date.splice(0, 0, year);
   var formattedDate = date.join("-");
   return formattedDate;
-}
+};

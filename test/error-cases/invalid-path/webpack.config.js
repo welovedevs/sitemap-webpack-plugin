@@ -8,8 +8,6 @@ module.exports = {
   },
 
   plugins: [
-    new SitemapPlugin('https://mysite.com', ['/', '/about'], {
-      fileName: 'map.xml'
-    })
+    new SitemapPlugin('https://mysite.com', [42])
   ]
 };
