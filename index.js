@@ -1,3 +1,5 @@
+var GenerateDate = require('./date');
+
 function SitemapWebpackPlugin(base, paths, fileName) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
@@ -9,15 +11,6 @@ function SitemapWebpackPlugin(base, paths, fileName) {
   this.base = base;
   this.paths = paths;
   this.fileName = fileName || 'sitemap.xml';
-}
-
-function GenerateDate() {
-  var dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  var date = new Date().toLocaleDateString([], dateOptions).split("/");
-  var year = date.splice(-1)[0];
-  date.splice(0, 0, year);
-  var formattedDate = date.join("-");
-  return formattedDate;
 }
 
 SitemapWebpackPlugin.prototype.apply = function(compiler) {

@@ -29,6 +29,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "rimraf": "^2.5.4",
+    "timecop": "git+https://github.com/jamesarosen/Timecop.js.git",
     "webpack": "^1.12.14"
   }
 }

@@ -2,6 +2,7 @@ var glob = require('glob');
 var async = require('async');
 var fs = require('fs');
 var path = require('path');
+var GenerateDate = require('../../date');
 
 var readFile = function(path, done) {
   return fs.readFile(path, 'utf8', done);
@@ -17,7 +18,9 @@ module.exports = function(referenceDir, targetDir, done) {
         return done(err);
       }
 
-      done(null, results[0] === results[1]);
+      var referenceContent = results[0].replace(/\$DATE\$/g, GenerateDate());
+      var targetContent = results[1];
+      done(null, referenceContent === targetContent);
     });
   };
 
