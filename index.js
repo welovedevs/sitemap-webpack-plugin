@@ -92,7 +92,7 @@ SitemapWebpackPlugin.prototype.apply = function(compiler) {
           return sitemap;
         },
         size: /* istanbul ignore next */ function () {
-          return Buffer.byteLength(out, 'utf8');
+          return Buffer.byteLength(sitemap, 'utf8');
         }
       };
     } catch (err) {
