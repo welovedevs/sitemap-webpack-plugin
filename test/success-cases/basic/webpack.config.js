@@ -1,4 +1,5 @@
 var SitemapPlugin = require('../../../');
+var StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
 
 module.exports = {
   output: {
@@ -8,6 +9,7 @@ module.exports = {
   },
 
   plugins: [
-    new SitemapPlugin('https://mysite.com', ['/', '/about'])
+    new SitemapPlugin('https://mysite.com', ['/', '/about']),
+    new StatsWriterPlugin() // Causes the asset's `size` method to be called
   ]
 };
