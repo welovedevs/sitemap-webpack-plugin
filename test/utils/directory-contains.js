@@ -2,10 +2,27 @@ var glob = require('glob');
 var async = require('async');
 var fs = require('fs');
 var path = require('path');
+var zlib = require('zlib');
 var GenerateDate = require('../../date');
 
 var readFile = function(path, done) {
-  return fs.readFile(path, 'utf8', done);
+  if(path.endsWith('.gz')) {
+    return fs.readFile(path, function(err, contents) {
+      if(err) {
+        done(err);
+      } else {
+        zlib.gunzip(contents, function(err, data) {
+          if(err) {
+            done(err);
+          } else {
+            done(null, data.toString('utf8'));
+          }
+        });
+      }
+    });
+  } else {
+    return fs.readFile(path, 'utf8', done);
+  }
 };
 
 module.exports = function(referenceDir, targetDir, done) {
@@ -24,17 +41,23 @@ module.exports = function(referenceDir, targetDir, done) {
     });
   };
 
-  glob('**/*', { cwd: referenceDir, nodir: true }, function(err, files) {
+  glob('**/*', { cwd: referenceDir, nodir: true }, function(err, referenceFiles) {
     if (err) {
       return done(err);
     }
 
-    async.map(files, compareFile, function(err, results) {
+    glob('**/*', { cwd: targetDir, nodir: true }, function(err, targetFiles) {
       if (err) {
         return done(err);
       }
 
-      done(null, !results.some(function(result) { return !result; }));
+      async.map(referenceFiles.concat(targetFiles), compareFile, function(err, results) {
+        if (err) {
+          return done(err);
+        }
+
+        done(null, !results.some(function(result) { return !result; }));
+      });
     });
   });
 };

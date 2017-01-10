@@ -24,6 +24,7 @@ Add to your webpack config -- see below for examples. The plugin signature is:
 * `lastMod` (boolean) -- default `false` -- whether to include the current date as the `<lastmod>`. Can be overridden by path-specific `lastMod`.
 * `priority` (number) -- default `null` -- a `<priority>` to be set globally on all locations. Can be overridden by path-specific `priority`.
 * `changeFreq` (string) -- default `null` -- a `<changefreq>` to be set globally on all locations; list of applicable values based on [sitemaps.org](http://www.sitemaps.org/protocol.html): `always`, `hourly`, `daily`, `weekly`, `monthly`, `yearly`, `never`. Can be overridden by path-specific `changeFreq`.
+* `skipGzip` (boolean) -- default `false` -- whether to skip generating a gzipped `.xml.gz` sitemap. (By default, both an uncompressed and a compressed sitemap are generated -- the compressed version is generated at `sitemap.xml.gz`, or `[fileName].xml.gz` if the `fileName` configuration option is set.)
 
 ### webpack.config.js
 
@@ -63,6 +64,13 @@ module.exports = {
   plugins: [
     new SitemapPlugin('https://mysite.com', paths, {
       fileName: 'map.xml'
+    })
+  ]
+
+  /* skip generating a gzipped version of the sitemap */
+  plugins: [
+    new SitemapPlugin('https://mysite.com', paths, {
+      skipGzip: true
     })
   ]
 

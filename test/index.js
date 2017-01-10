@@ -20,7 +20,7 @@ describe('Success cases', function() {
         var webpackConfig = require('./success-cases/' + successCase + '/webpack.config.js');
 
         webpack(webpackConfig, function(err, stats) {
-          if (err) {
+          if(err) {
             return done(err);
           }
 
@@ -29,7 +29,7 @@ describe('Success cases', function() {
           var actualDir = caseDir + '/actual-output/';
 
           directoryContains(expectedDir, actualDir, function(err, result) {
-            if (err) {
+            if(err) {
               return done(err);
             }
 

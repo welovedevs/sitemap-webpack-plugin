@@ -1,3 +1,4 @@
+var zlib = require('zlib');
 var GenerateDate = require('./date');
 
 var GenerateSitemap = function(self) {
@@ -77,14 +78,17 @@ function SitemapWebpackPlugin(base, paths, options) {
   this.lastMod = options.lastMod || false;
   this.changeFreq = options.changeFreq || null;
   this.priority = options.priority || null;
+  this.skipGzip = options.skipGzip || false;
 }
 
 SitemapWebpackPlugin.prototype.apply = function(compiler) {
   var self = this;
 
   compiler.plugin('emit', function(compilation, callback) {
+    var sitemap = null;
+
     try {
-      var sitemap = GenerateSitemap(self);
+     sitemap = GenerateSitemap(self);
 
       compilation.fileDependencies.push(self.fileName);
       compilation.assets[self.fileName] = {
@@ -98,7 +102,27 @@ SitemapWebpackPlugin.prototype.apply = function(compiler) {
     } catch (err) {
       compilation.errors.push(err.stack);
     }
-    callback();
+
+    if(self.skipGzip !== true) {
+      zlib.gzip(sitemap, function(err, compressed) {
+        /* istanbul ignore if */
+        if(err) {
+          compilation.errors.push(err.stack);
+        } else {
+          compilation.assets[self.fileName + '.gz'] = {
+            source: function () {
+              return compressed;
+            },
+            size: function () {
+              return Buffer.byteLength(compressed);
+            }
+          };
+          callback();
+        }
+      });
+    } else {
+      callback();
+    }
   });
 };
 
