@@ -103,7 +103,7 @@ SitemapWebpackPlugin.prototype.apply = function(compiler) {
       compilation.errors.push(err.stack);
     }
 
-    if(self.skipGzip !== true) {
+    if(sitemap !== null && self.skipGzip !== true) {
       zlib.gzip(sitemap, function(err, compressed) {
         /* istanbul ignore if */
         if(err) {
