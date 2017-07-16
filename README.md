@@ -49,7 +49,7 @@ const paths = [
 ];
 
 /* you can also convert object paths back into static-site-generator-webpack-plugin compatible paths */
-const staticSiteGeneratorCompatiblePaths = paths.map((path) => { return path.path });
+const staticSiteGeneratorCompatiblePaths = paths.map(({path}) => path);
 
 export default {
 
