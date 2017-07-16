@@ -44,7 +44,7 @@
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^3.2.0",
     "rimraf": "^2.5.4",
-    "timecop": "git+https://github.com/jamesarosen/Timecop.js.git",
+    "timekeeper": "^1.0.0",
     "webpack": "^1.12.14",
     "webpack-stats-plugin": "^0.1.4"
   }
