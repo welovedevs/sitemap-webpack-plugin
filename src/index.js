@@ -32,7 +32,7 @@ export default class SitemapWebpackPlugin {
 
     // Create sitemap from paths
     let out = '<?xml version="1.0" encoding="UTF-8"?>';
-    out += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+		out += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">';
 
     const locs = this.paths.map((path) => {
       if(typeof path === 'object') {
@@ -73,6 +73,19 @@ export default class SitemapWebpackPlugin {
       } else if(this.priority) {
         loc += `<priority>${this.priority}</priority>`;
       }
+
+			// Add alternates
+			if(path.alternates) {
+				path.alternates.forEach((alternate) => {
+					const { hreflang, href } = alternate;
+					loc += `
+					<xhtml:link
+               rel="alternate"
+               hreflang="${hreflang}"
+               href="${this.base}/${href}"/>
+							 `
+				})
+			}
 
       loc += '</url>';
       return loc;
