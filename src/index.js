@@ -78,12 +78,11 @@ export default class SitemapWebpackPlugin {
 			if(path.alternates) {
 				path.alternates.forEach((alternate) => {
 					const { hreflang, href } = alternate;
-					loc += `
-					<xhtml:link
-               rel="alternate"
-               hreflang="${hreflang}"
-               href="${this.base}/${href}"/>
-							 `
+					loc +=
+`<xhtml:link
+      rel="alternate"
+      hreflang="${hreflang}"
+      href="${this.base}/${href}"/>`
 				})
 			}
 
